@@ -40,7 +40,7 @@ function App() {
                 fontSize: 16,
                 border: "1px solid #ddd",
                 borderRadius: "5px",
-                height: "auto",
+                height: "100vh",
                 width: "100%"
               }}
             />
