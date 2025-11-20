@@ -40,8 +40,10 @@ function App() {
                 fontSize: 16,
                 border: "1px solid #ddd",
                 borderRadius: "5px",
+                minHeight: "100%",
                 height: "auto",
-                width: "100%"
+                width: "100%",
+                overflow:"auto"
               }}
             />
           </div>
