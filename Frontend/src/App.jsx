@@ -15,15 +15,24 @@ function App() {
 }`)
 
   const [ review, setReview ] = useState(``)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     prism.highlightAll()
   }, [])
 
   async function reviewCode() {
+    try{
+    setLoading(true)
+      
     const response = await axios.post('https://code-review-backend-alpha.vercel.app/ai/get-review', { code })
-    setReview(response.data)
-  }
+    setReview(response.data.review || response.data)
+   }catch(error){
+    setReview("Error Fetching Review")
+    }finally{
+    setLoading(false)
+    }
+  }   
 
   return (
     <>
@@ -49,7 +58,9 @@ function App() {
           </div>
           <div
             onClick={reviewCode}
-            className="review">Review</div>
+            className="review">
+            {loading ? "Reviewing..." : "Review"}
+          </div>
         </div>
         <div className="right">
           <Markdown
